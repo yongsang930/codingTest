@@ -1,21 +1,19 @@
 class Solution {
-    public int solution(int n) {        
-        return fib(n);
-    }
-    
-    public int fib(int num){
-        if(num == 0) return 0;
-        if(num == 1 || num == 2) return 1;
+    public int solution(int n) {
+        int before = 0;
+        int after = 1;
+
+        int sum = 0;
         
-        int result = 0;
-        int a = 1, b = 1;
-        
-        for(int i = 3; i <= num; i++){
-            result = (a + b) % 1234567;
-            a = b;
-            b = result;
+        for(int i = 2; i <= n; i++){
+            
+            sum = (before + after) % 1234567;
+            before = after;
+            after = sum;
+            
         }
         
-        return result;
+        return sum ;
     }
+   
 }
