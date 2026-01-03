@@ -1,19 +1,29 @@
+import java.util.*;
+
 class Solution {
     public String solution(String s) {
-        String answer = "";
+        StringBuilder sb = new StringBuilder();        
+        char[] charArray = s.toCharArray();       
+        boolean startTf = true;
         
-        String[] arr = s.split(" ", -1); // 공백 유지용 옵션 -1
-        
-        for(int i = 0; i < arr.length; i++){               
-            if (!arr[i].isEmpty() && Character.isLetter(arr[i].charAt(0))) {
-                arr[i] = arr[i].substring(0,1).toUpperCase() + arr[i].substring(1).toLowerCase();
-            }else{
-                arr[i] = arr[i].toLowerCase();    
+        for(int i = 0; i < charArray.length; i++){
+            if(charArray[i] == ' '){
+               sb.append(" ");
+               startTf = true;
+               continue;
             }
             
-            if(arr.length -1 == i) answer += arr[i];   
-            else  answer += arr[i] + " ";  
-        }        
-        return answer;
+            if(startTf){
+               if('a' <= charArray[i] || 'z' >= charArray[i]){
+                    sb.append((charArray[i] + "").toUpperCase());                    
+                } 
+                startTf = false;
+                continue;
+            } 
+            sb.append((charArray[i] + "").toLowerCase());                       
+        }
+
+        
+        return sb.toString();
     }
 }
