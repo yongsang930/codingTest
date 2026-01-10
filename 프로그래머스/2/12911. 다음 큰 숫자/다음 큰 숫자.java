@@ -1,22 +1,28 @@
-import java.util.*;
-import java.math.*;
-
 class Solution {
     public int solution(int n) {
-        return nextSameOneCount(n);
-    }
-    
-    public int nextSameOneCount(int num){
-        int cnt = countNumOne(num);
+        int count1 = 0;
+        int count2 = 0;
+        String str = Integer.toBinaryString(n);
+        
+        for(int i = 0; i < str.length(); i++){
+            if(str.charAt(i) == '1') count1++;
+        }    
+                    
+        while(count1 != count2){
+            
+            count2 = 0;
+            
+            n++;
+            
+            str = Integer.toBinaryString(n);
                 
-        while(true){
-            num++;
-            int tempNum = countNumOne(num);
-            if(cnt == tempNum) return num;
+            for(int i = 0; i < str.length(); i++){
+                if(str.charAt(i) == '1') count2++;
+            } 
+            
+            if(count1 == count2) return n;            
         }
-    }
-    
-    public int countNumOne(int num){
-        return Integer.bitCount(num);
+ 
+        return n;
     }
 }
