@@ -1,17 +1,24 @@
 class Solution {
-    public int[] solution(String s) {
-        int count = 0;       
-        int zeroCount = 0;   
-
-        while (!s.equals("1")) {
-            int beforeLength = s.length();
-            s = s.replace("0", "");              
-            int afterLength = s.length();
-            zeroCount += (beforeLength - afterLength); // 제거된 0 개수 누적
-            s = Integer.toString(afterLength, 2);
+    public int[] solution(String s) {       
+        int zeroCount = 0;
+        int count = 0;
+        String str = "";
+        
+        
+        while(!s.equals("1")){
+            
+            for(int i = 0; i < s.length(); i++){     
+                if('0' == s.charAt(i)){
+                    zeroCount++;
+                }
+            }
+            
+            str = s.replaceAll("0","");
+            s = Integer.toBinaryString(str.length());
             count++;
         }
-
+               
+        
         return new int[]{count, zeroCount};
     }
 }
