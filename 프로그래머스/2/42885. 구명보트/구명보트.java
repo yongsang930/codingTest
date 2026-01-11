@@ -8,19 +8,12 @@ class Solution {
         
         Arrays.sort(people);
         
-        while(right > left){           
-            if(people[left] + people[right] <= limit){
-                right--;
+        while(right >= left){           
+            if(people[left] + people[right] <= limit){  
                 left++;
-            } else{
-                right--;
             }
+            right--;
             answer++;
-            
-            if(left == right){
-                answer++;
-                return answer;
-            }
         }
         
         return answer;
